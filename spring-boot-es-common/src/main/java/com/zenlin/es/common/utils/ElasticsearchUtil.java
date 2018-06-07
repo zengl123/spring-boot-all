@@ -3,7 +3,7 @@ package com.zenlin.es.common.utils;
 /**
  * @Project spring-boot-all
  * @Package com.zenlin.es.common.utils
- * @ClassName EsUtil
+ * @ClassName ElasticsearchUtil
  * @Author ZENLIN
  * @Date 2018-05-20 18:25
  * @Description TODO
@@ -25,7 +25,6 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
