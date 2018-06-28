@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>spring-boot-es-common</module>
         <module>spring-boot-es-all</module>
+        <module>spring-boot-common</module>
         <module>spring-boot-web-war</module>
     </modules>
     <!--spring-boot父模块-->
@@ -29,6 +29,7 @@
         <java.version>10</java.version>
         <alibaba.fastjson.version>1.2.47</alibaba.fastjson.version>
         <lombok.version>1.18.0</lombok.version>
+        <common.lang3.version>3.4</common.lang3.version>
     </properties>
     <!--配置maven项目的远程仓库-->
     <repositories>
@@ -96,6 +97,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${common.lang3.version}</version>
         </dependency>
     </dependencies>
 

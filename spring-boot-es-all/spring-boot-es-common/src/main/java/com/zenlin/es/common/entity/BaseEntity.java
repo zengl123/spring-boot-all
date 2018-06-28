@@ -1,9 +1,11 @@
 package com.zenlin.es.common.entity;
 
+import com.zenlin.common.enums.DateTimePattern;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @Project spring-boot-all
@@ -18,5 +20,5 @@ import java.io.Serializable;
 @Data
 public class BaseEntity implements Serializable {
     private String createTime;
-    private String modifyTime;
+    private String modifyTime = LocalDateTime.now().withNano(0).format(DateTimeFormatter.ofPattern(DateTimePattern.YYYY_MM_DD_HH_MM_SS.getValue()));
 }

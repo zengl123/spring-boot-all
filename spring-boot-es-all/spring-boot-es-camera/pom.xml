@@ -21,4 +21,12 @@
     <packaging>pom</packaging>
     <name>spring-boot-es-camera</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.zenlin.es.common</groupId>
+            <artifactId>spring-boot-es-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
 </project>

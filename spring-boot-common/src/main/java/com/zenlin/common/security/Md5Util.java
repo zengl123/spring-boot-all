@@ -1,6 +1,5 @@
-package com.zenlin.es.common.security;
+package com.zenlin.common.security;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,7 +7,7 @@ import java.security.MessageDigest;
 
 /**
  * @Project spring-boot-all
- * @Package com.zenlin.es.common.security
+ * @Package com.zenlin.common.security
  * @ClassName MD5Util
  * @Author ZENLIN
  * @Date 2018-05-20 11:17

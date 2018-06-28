@@ -2,8 +2,9 @@ package com.zenlin.es.common.entity.camera;
 
 import com.zenlin.es.common.entity.BaseEntity;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
+
+
+
 
 /**
  * @Project spring-boot-all
@@ -16,10 +17,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
  * @Modified By
  */
 @Data
-@Document(indexName = "cameragroup",type = "cameraGroup")
 public class CameraGroup extends BaseEntity {
-    @Id
-    private Long id;
     private String cameraGroupNo;
     private String cameraGroupName;
     private String cameraGroupParentNo;

@@ -2,6 +2,7 @@ package com.zenlin.es.common.entity;
 
 import lombok.Data;
 
+
 /**
  * @Project spring-boot-all
  * @Package com.zenlin.es.common.entity
@@ -14,7 +15,8 @@ import lombok.Data;
  */
 @Data
 public class ElasticsearchEntity {
+    private String id;
     private String index;
     private String type;
-    private Object object;
+    private Object data;
 }
