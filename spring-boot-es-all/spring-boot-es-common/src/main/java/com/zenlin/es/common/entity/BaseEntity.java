@@ -1,5 +1,7 @@
 package com.zenlin.es.common.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.google.gson.annotations.SerializedName;
 import com.zenlin.common.enums.DateTimePattern;
 import lombok.Data;
 
@@ -18,7 +20,9 @@ import java.time.format.DateTimeFormatter;
  * @Modified By
  */
 @Data
-public class BaseEntity implements Serializable {
+public class BaseEntity {
+    @JSONField(name = "create_time")
+    @SerializedName(value = "create_time")
     private String createTime;
     private String modifyTime = LocalDateTime.now().withNano(0).format(DateTimeFormatter.ofPattern(DateTimePattern.YYYY_MM_DD_HH_MM_SS.getValue()));
 }

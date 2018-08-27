@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.AbstractFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * @Project spring-boot-all
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
  * @Modified By
  */
 @Configuration
+@Component
 public class ElasticsearchRestHighConfig extends AbstractFactoryBean<RestHighLevelClient> {
     @Value("${elasticsearch.host}")
     private String host;
@@ -45,8 +47,7 @@ public class ElasticsearchRestHighConfig extends AbstractFactoryBean<RestHighLev
     private RestClientBuilder builder;
     private RestHighLevelClient client;
 
-
-    @Bean
+    @Bean(value = "restHighLevelClient")
     public RestHighLevelClient RestHighLevelClient() {
         builder = RestClient.builder(new HttpHost(host, port, schema));
         if (uniqueConnectTimeConfig) {

@@ -1,0 +1,80 @@
+package com.zenlin.mysql.web.common;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.Data;
+import net.minidev.json.annotate.JsonIgnore;
+
+import java.io.Serializable;
+
+/**
+ * @Project spring-boot-all
+ * @Package com.zenlin.mysql.web.common
+ * @ClassName ServerResponse
+ * @Author ZENLIN
+ * @Date 2018-08-27 21:47
+ * @Description TODO
+ * @Version
+ * @Modified By
+ */
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+@Data
+public class ServerResponse<T> implements Serializable {
+    private String message;
+    private Integer status;
+    private T data;
+
+    public ServerResponse(int status) {
+        this.status = status;
+    }
+
+    public ServerResponse(int status, T data) {
+        this.status = status;
+        this.data = data;
+    }
+
+    public ServerResponse(int status, String message) {
+        this.status = status;
+        this.message = message;
+    }
+
+    public ServerResponse(int status, T data, String message) {
+        this.status = status;
+        this.data = data;
+        this.message = message;
+    }
+
+    @JsonIgnore
+    private boolean isSuccess() {
+        return this.status == ResponseCode.SUCCESS.getCode();
+    }
+
+    public <T> ServerResponse<T> createBySuccess() {
+        return new ServerResponse<>(ResponseCode.SUCCESS.getCode());
+    }
+
+    public <T> ServerResponse<T> createBySuccess(T data) {
+        return new ServerResponse<>(ResponseCode.SUCCESS.getCode(), data);
+    }
+
+    public <T> ServerResponse<T> createBySuccess(T data, String message) {
+        return new ServerResponse<>(ResponseCode.SUCCESS.getCode(), data, message);
+    }
+
+    public <T> ServerResponse<T> createBySuccessMessager(String message) {
+        return new ServerResponse<>(ResponseCode.SUCCESS.getCode(), message);
+    }
+
+    public <T> ServerResponse<T> createByError() {
+        return new ServerResponse<>(ResponseCode.ERROR.getCode(), ResponseCode.ERROR.getDesc());
+    }
+
+    public <T> ServerResponse<T> createByErrorMessage(String message) {
+        return new ServerResponse<>(ResponseCode.ERROR.getCode(), message);
+    }
+
+    public <T> ServerResponse<T> createByErrorCodeMessage(int errorCode, String errorMessage) {
+        return new ServerResponse<>(errorCode, errorMessage);
+    }
+
+
+}

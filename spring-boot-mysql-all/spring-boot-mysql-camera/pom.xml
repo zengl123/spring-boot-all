@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>spring-boot-mysql-camera-hk7000</module>
+        <module>spring-boot-mysql-camera-hk7600</module>
+        <module>spring-boot-mysql-camera-hk8200</module>
+        <module>spring-boot-mysql-camera-hk8700</module>
+        <module>spring-boot-mysql-camera-hk9600</module>
+        <module>spring-boot-mysql-camera-tdwy</module>
+    </modules>
+
+    <parent>
+        <artifactId>spring-boot-mysql-all</artifactId>
+        <groupId>com.zenlin.mysql.all</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.zenlin.mysql.camera</groupId>
+    <artifactId>spring-boot-mysql-camera</artifactId>
+    <packaging>pom</packaging>
+
+
+</project>

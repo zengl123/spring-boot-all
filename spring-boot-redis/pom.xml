@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>spring-boot-all</artifactId>
+        <groupId>com.zenlin.all</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.zenlin.redis</groupId>
+    <artifactId>spring-boot-redis</artifactId>
+    <packaging>jar</packaging>
+    <name>spring-boot-redis</name>
+
+    <properties>
+        <jedis.version>2.9.0</jedis.version>
+        <sdr.version>2.0.8.RELEASE</sdr.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${sdr.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

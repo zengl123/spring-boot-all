@@ -1,5 +1,6 @@
 package com.zenlin.es.common.entity.camera;
 
+import com.zenlin.es.common.entity.ElasticsearchEntity;
 import lombok.Data;
 
 /**

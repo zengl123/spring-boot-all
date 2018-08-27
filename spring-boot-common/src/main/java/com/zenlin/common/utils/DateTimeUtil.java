@@ -1,7 +1,5 @@
 package com.zenlin.common.utils;
 
-import org.junit.Test;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -430,10 +428,5 @@ public class DateTimeUtil {
         LocalDateTime localDateTime = getDateTimeOfString(stringTime, pattern);
         localDateTime = localDateTime.plusDays(day);
         return getStringOfDateTime(localDateTime, pattern);
-    }
-    @Test
-    public void stringMinusOrPlusDayTest(){
-        String plusDay = stringMinusOrPlusDay("2018/01/01", 1, "yyyy/MM/dd");
-        System.out.println("plusDay = " + plusDay);
     }
 }
