@@ -25,14 +25,14 @@
     </Properties>
     <Appenders>
         <!--输出控制台的配置-->
-        <Console name="Console" target="SYSTEM_OUT">
+        <Console name="console" target="SYSTEM_OUT">
             <!-- 控制台只输出level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch) -->
             <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout>
                 <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} <!--[%thread] %L %-5p %class{36} %M -->-->%message%xEx%n</pattern>
             </PatternLayout>
         </Console>
-        <!-- info.log-->
+        <!-- debug.log-->
         <RollingRandomAccessFile name="debug_appender"
                                  immediateFlush="true" fileName="${LOG_HOME}/debug.log"
                                  filePattern="${LOG_HOME}/debug.%d{yyyy-MM-dd}.log.gz">
@@ -45,17 +45,17 @@
             </Policies>
         </RollingRandomAccessFile>
         <!-- info.log-->
-        <RollingRandomAccessFile name="info_appender"
+        <!--<RollingRandomAccessFile name="info_appender"
                                  immediateFlush="true" fileName="${LOG_HOME}/info.log"
                                  filePattern="${LOG_HOME}/info.%d{yyyy-MM-dd}.log.gz">
             <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %L %-5p %class{36} %M -->%message%xEx%n</pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %L %-5p %class{36} %M &ndash;&gt;%message%xEx%n</pattern>
             </PatternLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
-        </RollingRandomAccessFile>
+        </RollingRandomAccessFile>-->
         <!-- 自动追加日志信息到文件中，直至文件达到预定的大小，然后自动重新生成另外一个文件来记录之后的日志-->
         <!-- 设置日志格式并配置回滚日志压缩格式(error.log.年份.gz) -->
         <RollingRandomAccessFile name="error_appender"
@@ -73,12 +73,10 @@
         </RollingRandomAccessFile>
     </Appenders>
     <Loggers>
-        <!-- Root Logger -->
-        <root level="info">
-            <appender-ref ref="Console"/>
-            <appender-ref ref="debug_appender"/>
-            <appender-ref ref="info_appender"/>
+        <root level="debug">
+            <appender-ref ref="console"/>
             <appender-ref ref="error_appender"/>
         </root>
+        <logger name="com.zenlin.mysql.web.dao" level="debug" additivity="true"></logger>
     </Loggers>
 </Configuration>

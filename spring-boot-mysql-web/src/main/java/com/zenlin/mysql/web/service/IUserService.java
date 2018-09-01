@@ -1,5 +1,8 @@
 package com.zenlin.mysql.web.service;
 
+import com.zenlin.mysql.web.common.ServerResponse;
+import com.zenlin.mysql.web.domain.pojo.EcUser;
+
 /**
  * @Project spring-boot-all
  * @Package com.zenlin.mysql.web.service
@@ -11,4 +14,5 @@ package com.zenlin.mysql.web.service;
  * @Modified By
  */
 public interface IUserService {
+    ServerResponse insert(EcUser ecUser);
 }
