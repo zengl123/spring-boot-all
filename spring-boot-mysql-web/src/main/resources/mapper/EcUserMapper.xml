@@ -5,6 +5,7 @@
         <id column="id" property="id"/>
         <result column="create_time" property="createTime"/>
         <result column="modified_time" property="modifiedTime"/>
+        <result column="user_name" property="userName"/>
     </resultMap>
 
     <sql id="Table">
@@ -12,7 +13,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        id, username, `password`, email, phone, question, answer, `role`, create_time, modified_time, 
+        id, user_name, `password`, email, phone, question, answer, `role`, create_time, modified_time, 
         creator, modifier
     </sql>
 
@@ -22,79 +23,79 @@
     </sql>
 
     <insert id="insert">
-        insert into 
+        insert into
         <include refid="Table"/>(
-        id, 
-        username, 
-        `password`, 
-        email, 
-        phone, 
-        question, 
-        answer, 
-        `role`, 
-        create_time, 
-        modified_time, 
-        creator, 
+        id,
+        user_name,
+        `password`,
+        email,
+        phone,
+        question,
+        answer,
+        `role`,
+        create_time,
+        modified_time,
+        creator,
         modifier
         )
         values (
-        #{id}, 
-        #{username}, 
-        #{password}, 
-        #{email}, 
-        #{phone}, 
-        #{question}, 
-        #{answer}, 
-        #{role}, 
-        now(), 
-        now(), 
-        #{creator}, 
+        #{id},
+        #{userName},
+        #{password},
+        #{email},
+        #{phone},
+        #{question},
+        #{answer},
+        #{role},
+        now(),
+        now(),
+        #{creator},
         #{modifier}
         )
     </insert>
 
     <insert id="insertBatch">
-        insert into 
+        insert into
         <include refid="Table"/>(
-        id, 
-        username, 
-        `password`, 
-        email, 
-        phone, 
-        question, 
-        answer, 
-        `role`, 
-        create_time, 
-        modified_time, 
-        creator, 
+        id,
+        user_name,
+        `password`,
+        email,
+        phone,
+        question,
+        answer,
+        `role`,
+        create_time,
+        modified_time,
+        creator,
         modifier
         )
         values
         <foreach collection="list" item="obj" separator=",">(
-            (select replace(UUID(), '-', '') as id), 
-            #{obj.username}, 
-            #{obj.password}, 
-            #{obj.email}, 
-            #{obj.phone}, 
-            #{obj.question}, 
-            #{obj.answer}, 
-            #{obj.role}, 
-            now(), 
-            now(), 
-            #{obj.creator}, 
+            (select replace(UUID(), '-', '') as id),
+            #{obj.userName},
+            #{obj.password},
+            #{obj.email},
+            #{obj.phone},
+            #{obj.question},
+            #{obj.answer},
+            #{obj.role},
+            now(),
+            now(),
+            #{obj.creator},
             #{obj.modifier}
             )
         </foreach>
     </insert>
 
     <delete id="deleteById">
-        delete from 
+        delete from
         <include refid="Table"/>
         where id = #{id}
     </delete>
 
     <delete id="deleteByIds">
-        delete from 
+        delete from
         <include refid="Table"/>
         where id in
         <foreach collection="list" item="id" separator="," open="(" close=")">
@@ -103,10 +104,10 @@
     </delete>
 
     <update id="update">
-        update 
+        update
         <include refid="Table"/>
         <set>
-            <if test="username!=null">username=#{username},</if>
+            <if test="user_name!=null">user_name=#{userName},</if>
             <if test="password!=null">`password`=#{password},</if>
             <if test="email!=null">email=#{email},</if>
             <if test="phone!=null">phone=#{phone},</if>
@@ -120,13 +121,13 @@
     </update>
 
     <update id="updateBatch">
-        update 
+        update
         <include refid="Table"/>
         <trim prefix="set" suffixOverrides=",">
-            <trim prefix="username=case" suffix="end,">
+            <trim prefix="user_name=case" suffix="end,">
                 <foreach collection="list" item="obj">
-                    <if test="obj.username!=null">
-                        when id=#{obj.id} then #{obj.username}
+                    <if test="obj.user_name!=null">
+                        when id=#{obj.id} then #{obj.userName}
                     </if>
                 </foreach>
             </trim>
@@ -192,17 +193,17 @@
     </update>
 
     <select id="findById" resultMap="BaseResultMap">
-        select 
+        select
         <include refid="Base_Column_List"/>
-        from 
+        from
         <include refid="Table"/>
         where id = #{id}
     </select>
 
     <select id="findByIds" resultMap="BaseResultMap">
-        select 
+        select
         <include refid="Base_Column_List"/>
-        from 
+        from
         <include refid="Table"/>
         where id in
         <foreach collection="list" item="id" separator="," open="(" close=")">
@@ -211,12 +212,63 @@
     </select>
 
     <select id="findAll" resultMap="BaseResultMap">
-        select 
+        select
         <include refid="Base_Column_List"/>
-        from 
+        from
         <include refid="Table"/>
     </select>
-    <select id="findByParams" resultType="com.zenlin.mysql.web.domain.pojo.EcUser"></select>
+    <select id="findByParams" resultMap="BaseResultMap"></select>
 
+    <select id="checkUserName" resultType="java.lang.Integer" parameterType="string">
+        select count(1)
+        from
+        <include refid="Table"/>
+        where
+        user_name=#{userName}
+    </select>
 
+    <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="Table"/>
+        where
+        user_name=#{userName}
+        and
+        password=#{password}
+    </select>
+
+    <select id="checkEmail" resultType="java.lang.Integer" parameterType="string">
+        select count(1)
+        from
+        <include refid="Table"/>
+        where
+        email=#{email}
+    </select>
+
+    <select id="checkPhone" resultType="java.lang.Integer" parameterType="string">
+        select count(1)
+        from
+        <include refid="Table"/>
+        where
+        phone=#{phone}
+    </select>
+    <select id="selectQuestionByUserName" resultType="java.lang.String">
+        select question
+        from
+        <include refid="Table"/>
+        where
+        user_name=#{userName}
+    </select>
+    <select id="checkAnswer" resultType="java.lang.Integer" parameterType="map">
+        select count(1)
+        from
+        <include refid="Table"/>
+        where
+        user_name=#{userName}
+        and
+        question=#{question}
+        and
+        answer=#{answer}
+    </select>
 </mapper>

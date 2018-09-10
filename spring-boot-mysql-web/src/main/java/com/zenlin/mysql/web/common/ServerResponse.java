@@ -44,7 +44,7 @@ public class ServerResponse<T> implements Serializable {
     }
 
     @JsonIgnore
-    private boolean isSuccess() {
+    public boolean isSuccess() {
         return this.status == ResponseCode.SUCCESS.getCode();
     }
 

@@ -27,9 +27,9 @@
         <!--输出控制台的配置-->
         <Console name="console" target="SYSTEM_OUT">
             <!-- 控制台只输出level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch) -->
-            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} <!--[%thread] %L %-5p %class{36} %M -->-->%message%xEx%n</pattern>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
             </PatternLayout>
         </Console>
         <!-- debug.log-->
@@ -38,7 +38,7 @@
                                  filePattern="${LOG_HOME}/debug.%d{yyyy-MM-dd}.log.gz">
             <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %L %-5p %class{36} %M -->%message%xEx%n</pattern>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
             </PatternLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
@@ -63,7 +63,7 @@
                                  filePattern="${LOG_HOME}/error.%d{yyyy-MM-dd}.log.gz">
             <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout>
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %L %-5p %class{36} %M -->%message%xEx%n</pattern>
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
             </PatternLayout>
             <!-- 指定滚动日志的策略，就是什么时候进行新建日志文件输出日志.-->
             <Policies>
@@ -77,6 +77,6 @@
             <appender-ref ref="console"/>
             <appender-ref ref="error_appender"/>
         </root>
-        <logger name="com.zenlin.mysql.web.dao" level="debug" additivity="true"></logger>
+        <logger name="com.zenlin.mysql.web" level="debug" additivity="true"></logger>
     </Loggers>
 </Configuration>

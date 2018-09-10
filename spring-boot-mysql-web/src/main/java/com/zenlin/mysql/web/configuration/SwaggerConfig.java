@@ -44,7 +44,7 @@ public class SwaggerConfig {
                 .globalResponseMessage(RequestMethod.POST, customerResponseMessage())
                 .globalOperationParameters(pars)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.zenlin.mysql,web.control"))
+                .apis(RequestHandlerSelectors.basePackage("com.zenlin.mysql.web.control"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -106,7 +106,7 @@ public class SwaggerConfig {
      * @return
      */
     private ArrayList<ResponseMessage> customerResponseMessage() {
-        return new ArrayList<ResponseMessage>() {{
+        return new ArrayList<>() {{
             add(new ResponseMessageBuilder()
                     .code(CommonEnum.CodeEnum.OK.getValue())
                     .message(CommonEnum.CodeEnum.OK.getName())

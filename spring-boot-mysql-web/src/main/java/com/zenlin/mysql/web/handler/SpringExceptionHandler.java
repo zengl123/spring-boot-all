@@ -37,4 +37,32 @@ public class SpringExceptionHandler {
         LOGGER.error(e.getClass().getName() + ":" + e.getMessage());
         return ServerResponse.createByErrorMessage(e.getMessage());
     }
+
+    /**
+     * 异常
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = RuntimeException.class)
+    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseBody
+    public ServerResponse handlerBusinessException(RuntimeException e) {
+        LOGGER.error(e.getClass().getName() + ":" + e.getMessage());
+        return ServerResponse.createByErrorMessage(e.getMessage());
+    }
+
+    /**
+     * 异常
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value =Exception.class)
+    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseBody
+    public ServerResponse handlerBusinessException(Exception e) {
+        LOGGER.error(e.getClass().getName() + ":" + e.getMessage());
+        return ServerResponse.createByErrorMessage(e.getMessage());
+    }
 }

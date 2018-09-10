@@ -1,5 +1,6 @@
-package com.zenlin.common.security;
+package com.zenlin.mysql.web.security;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -66,6 +67,8 @@ public class Md5Util {
     }
 
     /**
+     * 普通Md5加密
+     *
      * @param origin
      * @return
      */
@@ -73,10 +76,13 @@ public class Md5Util {
         return Md5Encode(origin, encodingCharset);
     }
 
-    /*@Test
-    public void test() {
-        String origin = "ABC";
-        String md5Encode = Md5Encode(origin);
-        System.out.println("md5Encode = " + md5Encode);
-    }*/
+    /**
+     * 普通Md5加密
+     *
+     * @param origin
+     * @return
+     */
+    public static String Md5EncodeUtf8Salt(String origin) {
+        return Md5Encode(origin, encodingCharset);
+    }
 }
